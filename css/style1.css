@@ -1,0 +1,325 @@
+
+* {
+  box-sizing: border-box;
+  display: grid;
+}
+
+title {
+  display: none;
+}
+
+body {
+    display: grid;
+    grid-template-areas: "header"
+                          "maincontent"
+                          "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    background-color: #eeeeef;
+    max-width: 100%;
+    height: 100%;
+}
+
+header {
+    grid-area: "header";
+}
+#maincontent {
+    grid-area: "maincontent";
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    background-color: #f3f3f3;
+}
+
+#footer {
+  grid-area: "footer";
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding: 15px;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+/* ====================== Navigation ====================== */
+nav {
+  height: 80px;
+  background-color: #252831;
+  padding: 5px;
+}
+nav h1 {
+  margin: auto;
+}
+nav h1 a {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 200;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+}
+#breadcrumb {
+    padding-left: 5px;
+    list-style: none;
+    text-align: left;
+    font-size: 22px;
+    grid-row: 5/6;
+    grid-column: 1/13;
+    margin: 0;
+}
+
+/* Display list items side by side */
+#breadcrumb li {
+    display: inline;
+    grid-row: 1/2;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+#breadcrumb li+li:before {
+    padding-left: 8px;
+    color: black;
+    content: "/\00a0";
+/*    grid-row: 4/5;
+*/}
+
+/* Add a color to all links inside the list */
+#breadcrumb li a {
+    color: #0275d8;
+    font-size: 22px;
+    text-decoration: none;
+    text-align: right;
+}
+
+/* Add a color on mouse-over */
+#breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+/* ====================== Map ====================== */
+#map {
+  height: 250px;
+  width: 100%;
+  background-color: #ccc;
+  grid-row-start: 3;
+  border: 2px inset black;
+}
+/* ====================== Restaurant Filtering ====================== */
+.filter-options {
+  width: 100%;
+  height: 50px;
+  background-color: #1b1b1b;
+  align-items: center;
+  grid-row: 1/2;
+  z-index: 2;
+}
+.filter-options h2 {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  margin: 5 20px;
+  padding-left: 10px;
+}
+
+.filter-options select {
+  background-color: white;
+  border: 1px solid #fff;
+  font-family: Arial,sans-serif;
+  font-size: 11pt;
+  height: 35px;
+  letter-spacing: 0;
+  margin: -5px 10px 10px 10px;
+  padding: 0 10px;
+  grid-row: 4/5;
+}
+
+/* ====================== Restaurant Listing ====================== */
+#restaurants-list {
+  background-color: #1b1b1b;
+  list-style: outside none none;
+  margin: 0;
+  padding: 30px 15px 60px;
+  text-align: center;
+  width: 100%;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+}
+
+#restaurants-list li {
+  background-color: #fff;
+  border: 3px outset #ccc;
+  font-family: Arial,sans-serif;
+  margin: 10px;
+  padding: 10px 30px 25px;
+  text-align: left;
+  grid-column: 2/12;
+
+} 
+
+#restaurants-list .restaurant-img {
+  background-color: #ccc;
+  margin: 0;
+  max-width: 40%;
+  min-width: 100%;
+}
+#restaurants-list li h1 {
+  color: #ff7502;
+  font-family: Arial,sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+  letter-spacing: 0;
+  line-height: 1.3;
+  margin: 20px 0 10px;
+  text-transform: uppercase;
+}
+#restaurants-list p {
+  margin: 0;
+  font-size: 14pt;
+}
+#restaurants-list li a {
+  background-color: orange;
+  border-bottom: 3px solid #a29292;
+  border-right: 3px solid #a29292;
+  color: #000;
+  font-size: 12pt;
+  font-weight: bold;
+  margin: 15px 0 0;
+  padding: 8px 30px 10px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* ====================== Restaurant Details ====================== */
+.inside header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  grid-row: 1/2;
+}
+.inside #maincontent {
+    background-color: #f3f3f3;
+/*    margin-right: 8px;
+*/    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(30px, auto);
+}
+.inside #map-container {
+  background:  none repeat scroll 0 0;
+  grid-row: 7/8;
+  grid-column: 1/13;
+  width: 100%;
+  margin: 0;
+  padding: 10px 20px;
+  z-index: 2;
+}
+.inside #map {
+  background-color: #ccc;
+  grid-row: 1/2;
+  height: 200px;
+}
+.inside #footer {
+  bottom: 0;
+  width: 100%;
+}
+#restaurant-cuisine {
+  background-color: #333;
+  color: #ddd;
+  font-size: 16px ;
+  font-weight: 300;
+  letter-spacing: 10px;
+  margin: 0;
+  height: 30px;
+  padding: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  max-width: 100%;
+  grid-column: 2/12;
+  grid-row: 5/6;
+}
+#restaurant-img {
+  max-width: 100%;
+  max-height: 300px;
+  margin: auto;
+  grid-column: 2/12;
+  grid-row: 6/12;
+  border: 1px inset #000;
+}
+#restaurant-name {
+  color: #fc7605;
+  font-family: Arial,sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 0;
+  margin: 5px auto;
+  text-shadow: 1px 1px 1px black;
+  text-transform: uppercase;
+  grid-row: 12/13;
+  grid-column: 1/13;
+}
+#restaurant-address {
+  font-size: 16px;
+  font-style: italic;
+  margin: 5px auto;
+  grid-row: 14/15;
+  grid-column: 1/13;
+}
+
+#restaurant-hours { 
+  grid-column: 1/13;
+  grid-row: 13/14;
+  margin: 10px auto;
+  font-family: Arial,sans-serif;
+  font-size: 16px;
+}
+#restaurant-hours tr {
+  display: grid;
+  grid-template-columns: 100px 150px;
+  grid-template-rows: auto;
+  padding: 5px;
+}
+#restaurant-hours td {
+  text-align: left;
+  color: black;
+}
+
+#restaurant-container, #reviews-container {
+  margin-top: 5px;
+}
+#reviews-container {
+  padding: 30px;
+  background-color: #333;
+  text-align: justify;
+  grid-row-start: 8;
+  grid-column: 1/13;
+}
+#restaurant-container {
+  grid-row-start: 6;
+  grid-column: 1/13;
+}
+#reviews-container h2 {
+  color: #f58500;
+  font-size: 24pt;
+  font-weight: 300;
+  letter-spacing: -1px;
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+#reviews-list {
+  margin: 0;
+  padding: 0;
+}
+#reviews-list li {
+  background-color: #fff;
+  border: 2px solid #f3f3f3;
+  list-style-type: none;
+  margin: 0 0 30px;
+  overflow: hidden;
+  padding: 20px;
+  position: relative;
+  grid-column: 2/12;
+}
+#reviews-list li p {
+  margin: 0 0 10px;
+  font-size: 18px;
+}

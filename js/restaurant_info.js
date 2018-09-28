@@ -89,6 +89,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   const image = document.getElementById('restaurant-img');
   image.className = 'restaurant-img'
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = restaurant.name;
 
   const cuisine = document.getElementById('restaurant-cuisine');
   cuisine.innerHTML = restaurant.cuisine_type;
@@ -110,11 +111,11 @@ fillRestaurantHoursHTML = (operatingHours = self.restaurant.operating_hours) => 
     const row = document.createElement('tr');
 
     const day = document.createElement('td');
-    day.innerText = key;
+    day.innerHTML = key;
     row.appendChild(day);
 
     const time = document.createElement('td');
-    time.innerText = operatingHours[key];
+    time.innerHTML = operatingHours[key];
     row.appendChild(time);
 
     hours.appendChild(row);
