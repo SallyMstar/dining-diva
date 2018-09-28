@@ -8,7 +8,7 @@ var markers = []
 // =============== Initiate Service Worker ===========
 if(navigator.serviceWorker) {
   navigator.serviceWorker.register('/js/tableService.js')
-  .then(console.log("success"))
+  .then(console.log("WooHoo! It works!"))
   .catch(function(err) {
     console.log(err);
   })

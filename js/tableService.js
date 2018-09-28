@@ -1,4 +1,4 @@
-const cacheFiles = [
+const ingredients = [
 	'/',
 	'/index.html',
 	'/restaurant.html',
@@ -23,10 +23,10 @@ const cacheFiles = [
 	'/img/10.jpg'
 ];
 
-self.addEventListener('install', function(e) {
-	e.waitUntil(
+self.addEventListener('install', function(hostess) {
+	hostess.waitUntil(
 		caches.open('table1').then(function(cache) {
-			return cache.addAll(cacheFiles);
+			return cache.addAll(ingredients);
 		})
 	);
 });
