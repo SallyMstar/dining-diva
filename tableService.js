@@ -1,8 +1,8 @@
-const ingredients = [
+var ingredients = [
 	'/',
 	'/index.html',
 	'/restaurant.html',
-	'/css/styeSmall.css',
+	'/css/styleSmall.css',
 	'/css/styleMid.css',
 	'/css/styleUpperMid.css',
 	'/css/styleLarge.css',
@@ -22,22 +22,23 @@ const ingredients = [
 	'/img/10.jpg'
 ];
 
-self.addEventListener('install', function(hostess) {
-	hostess.waitUntil(
+console.log(ingredients);
+
+self.addEventListener('install', function(event) {
+	event.waitUntil(
 		caches.open('cacheTori').then(function(cache) {
-			return cache.addAll([
-				]);
+			return cache.addAll(ingredients);
 		})
 	);
 });
 
 self.addEventListener('activate', function(event) {
 	event.waitUntil(
-		caches.keys().then(function(cacheNames) {
+		caches.keys().then(function(cache) {
 			return Promise.all(
-				cacheNames.filter(function(cacheName) {
-					return cacheName != 'cacheTori';
-				}).map(function(cacheName) {
+				cache.filter(function(cache) {
+					return cache != 'cacheTori';
+				}).map(function(cache) {
 					return caches.delete(cacheName);
 				})
 			);
@@ -49,7 +50,23 @@ self.addEventListener('activate', function(event) {
 self.addEventListener('fetch', function(event) {
 	event.respondWith(
 		caches.match(event.request).then(function(response) {
-			return response || fetch(event.request);
+			if(response) {
+				console.log("Found it!");
+				return response;
+			} else {
+				console.log("Nowhere to be found -- whipping it up!");
+				return fetch(event.request)
+				.then(function(response) {
+					const responseClone = response.clone();
+					caches.open('cacheTori').then(function(cache) {
+							cache.put(event.request, responseClone);
+						})
+					return response;
+				})
+				.catch(function(error) {
+					console.log(error);
+				})
+			}
 		})
 	);
 });

@@ -10,11 +10,13 @@ const map = document.getElementById('map');
 // =============== Initiate Service Worker ===========
 if(navigator.serviceWorker) {
   navigator.serviceWorker.register('/tableService.js')
-  .then(console.log("WooHoo! It works!"))
-  .catch(function(err) {
-    console.log(err);
+  .then(function(registered) {
+    console.log("WooHoo! It works!")
   })
- }
+  .catch(function(fail) {
+    console.log("Registration failed with "+fail);
+  })
+ };
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
