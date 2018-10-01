@@ -1,5 +1,5 @@
 var ingredients = [
-	'/',
+	'/skeleton',
 	'/index.html',
 	'/restaurant.html',
 	'/css/styleSmall.css',
@@ -21,8 +21,6 @@ var ingredients = [
 	'/img/9.jpg',
 	'/img/10.jpg'
 ];
-
-console.log(ingredients);
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
@@ -48,6 +46,12 @@ self.addEventListener('activate', function(event) {
 
 
 self.addEventListener('fetch', function(event) {
+	let page = new URL(event.request.url);
+
+	if (page.origin === '/') {
+		event.respondWith(caches.match('/skeleton'));
+		return;
+	}
 	event.respondWith(
 		caches.match(event.request).then(function(response) {
 			if(response) {
