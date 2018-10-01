@@ -1,5 +1,5 @@
 var ingredients = [
-	'/skeleton',
+	'/',
 	'/index.html',
 	'/restaurant.html',
 	'/css/styleSmall.css',
@@ -24,9 +24,8 @@ var ingredients = [
 
 self.addEventListener('install', function(event) {
 	event.waitUntil(
-		caches.open('cacheTori').then(function(cache) {
-			return cache.addAll(ingredients);
-		})
+		caches.open('cacheTori')
+		.then(cache => cache.addAll(ingredients))
 	);
 });
 
@@ -53,7 +52,7 @@ self.addEventListener('fetch', function(event) {
 		return;
 	}
 	event.respondWith(
-		caches.match(event.request).then(function(response) {
+		caches.match(event.request, {'ignoreSearch': true}).then(function(response) {
 			if(response) {
 				console.log("Found it!");
 				return response;
