@@ -1,5 +1,6 @@
 let restaurant;
 var newMap;
+const mapDiv = document.getElementById('map');
 
 /**
  * Initialize map as soon as the page is loaded.
@@ -33,7 +34,10 @@ initMap = () => {
       DBHelper.mapMarkerForRestaurant(self.restaurant, self.newMap);
     }
   });
-}  
+}
+
+mapDiv.setAttribute('aria-label', 'location');
+mapDiv.setAttribute('role','application');
  
 /* window.initMap = () => {
   fetchRestaurantFromURL((error, restaurant) => {
