@@ -1,4 +1,4 @@
-# Front End Web Developer, Sally Morningstar
+# Restaurant Reviews Sample Site
 
 This is a collaborative sample site in which Sally Morningstar, as the Font End Developer, designed:
 
@@ -11,7 +11,7 @@ This is a collaborative sample site in which Sally Morningstar, as the Font End 
 	* ARIA-standards accessibility
 
 	* asynchronous functions to efficiently manage the user interface
-	
+
 	* service worker cache for faster page rendering and display even in settings with a poor internet connection
 
 
