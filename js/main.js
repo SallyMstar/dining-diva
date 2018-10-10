@@ -9,7 +9,7 @@ const map = document.getElementById('map');
 
 // =============== Initiate Service Worker ===========
 if(navigator.serviceWorker) {
-  navigator.serviceWorker.register('/tableService.js')
+  navigator.serviceWorker.register('https://sallymstar.github.io/dining-diva/tableService.js')
   .then(function(registered) {
     console.log("WooHoo! It works!")
   })
